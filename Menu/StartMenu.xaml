@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="LeapPointer_PC.Menu.StartMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             
+             d:DesignHeight="1000" d:DesignWidth="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0" Background="Cyan">
+            <Border BorderBrush="Gray" BorderThickness="5"/>
+            <TextBlock Text="Music" TextWrapping="Wrap" TextAlignment="Center" FontSize="50" FontWeight="ExtraBold" FontFamily="CenturyGothic" Height="50" Width="200" Margin="136,377,154,63" RenderTransformOrigin="-0.278,0.26"/>
+            <Image HorizontalAlignment="Center" Height="300" VerticalAlignment="Top" Width="300" Margin="88,84,112,0" Source="Images/MusicNote.png "/>
+            <TextBlock Text="Option 1" TextWrapping="Wrap" TextAlignment="Center" FontFamily="CenturyGothic" FontSize="40" FontWeight="Bold"  Margin="144,440,156,10"/>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="1" Background="PowderBlue">
+            <Border BorderBrush="Gray" BorderThickness="5"/>
+            <TextBlock Text="GPS" TextWrapping="Wrap" TextAlignment="Center" FontSize="50" FontWeight="ExtraBold" FontFamily="CenturyGothic" Height="50" Width="200" Margin="151,377,139,63" RenderTransformOrigin="-0.278,0.26"/>
+            <Image HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="250" Margin="132,108,0,0" Source="Images/GPS.png" MouseDown="Image_MouseDown" />
+            <TextBlock Text=" Option 2   " TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" FontFamily="CenturyGothic" FontSize="40" FontWeight="Bold"  Margin="162,440,118,10"/>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="0" Background="LightGreen">
+            <Border BorderBrush="Gray" BorderThickness="5"/>
+            <TextBlock Text="Contacts" TextWrapping="Wrap" TextAlignment="Center" FontSize="50" FontWeight="ExtraBold" FontFamily="CenturyGothic" Height="50" Width="300" Margin="94,374,96,66" RenderTransformOrigin="-0.278,0.26"/>
+            <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="141,129,0,0" Source="Images/Phone.png" RenderTransformOrigin="0.21,0.215"/>
+            <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontFamily="CenturyGothic" FontSize="40" FontWeight="Bold"  Margin="141,440,159,10"><Run Language="en-gb" Text=" "/><Run Text="Option 3"/></TextBlock>
+        </Grid>
+
+        <Grid x:Name="Extras"  Grid.Row="1" Grid.Column="1" Background="Ivory" HorizontalAlignment="Right" Height="500" VerticalAlignment="Bottom" Width="500">
+            <Border BorderBrush="Gray" BorderThickness="5"/>
+            <TextBlock Text="Extras" TextWrapping="Wrap" TextAlignment="Center" FontSize="50" FontWeight="ExtraBold" FontFamily="CenturyGothic" Height="50" Width="200" Margin="151,377,139,63" RenderTransformOrigin="-0.278,0.26"/>
+            <Image HorizontalAlignment="Left" Height="200" VerticalAlignment="Top" Width="200" Margin="156,129,0,0" Source="Images/Extras.png"/>
+            <TextBlock Text="Option 4" TextWrapping="Wrap" TextAlignment="Center" FontFamily="CenturyGothic" FontSize="40" FontWeight="Bold"  Margin="156,440,144,10"/>
+        </Grid>
+
+    </Grid>
+
+</UserControl>

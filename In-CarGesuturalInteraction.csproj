@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C1E48441-8FEA-4038-8B94-76EA146FE772}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LeapPointer_PC</RootNamespace>
+    <AssemblyName>LeapPointer-PC</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Externalconsole>true</Externalconsole>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="LeapCSharp.NET4.0">
+      <HintPath>LeapCSharp.NET4.0.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Experiment\Block.cs" />
+    <Compile Include="Experiment\Condition.cs" />
+    <Compile Include="Leap\Count\IGestureObserver.cs" />
+    <Compile Include="Leap\GestureDetector.cs" />
+    <Compile Include="Leap\GestureSpace.cs" />
+    <Compile Include="Leap\Count\CountDetector.cs" />
+    <Compile Include="Leap\Count\Feedback\CountTactile.cs" />
+    <Compile Include="Leap\Count\Feedback\CountVisual.cs" />
+    <Compile Include="Leap\Count\ICountObserver.cs" />
+    <Compile Include="Leap\Gestures\Pointing\Feedback\PointingTactile.cs" />
+    <Compile Include="Leap\Gestures\Pointing\Feedback\PointingVisual.cs" />
+    <Compile Include="Leap\Gestures\Pointing\IPointingObserver.cs" />
+    <Compile Include="Leap\Gestures\Pointing\ISelectionObserver.cs" />
+    <Compile Include="Leap\Gestures\Pointing\PointingDetector.cs" />
+    <Compile Include="Leap\IFrameListener.cs" />
+    <Compile Include="Leap\LeapInterface.cs" />
+    <Compile Include="Leap\LeapListener.cs" />
+    <Compile Include="Leap\ROI\ActivityROIs.cs" />
+    <Compile Include="Leap\ROI\IROIListener.cs" />
+    <Compile Include="Leap\ROI\ROI.cs" />
+    <Compile Include="Leap\ROI\ROIData.cs" />
+    <Compile Include="Leap\ROI\ROISet.cs" />
+    <Compile Include="Menu\Contacts.xaml.cs">
+      <DependentUpon>Contacts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\GPS.xaml.cs">
+      <DependentUpon>GPS.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\Music.xaml.cs">
+      <DependentUpon>Music.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Menu\StartMenu.xaml.cs">
+      <DependentUpon>StartMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Util\BalancedLatinSquare.cs" />
+    <Compile Include="Experiment\Metadata.cs" />
+    <Compile Include="Interfaces\NetworkInterface.cs" />
+    <Compile Include="Interfaces\Protocol.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\FileManager.cs" />
+    <Compile Include="Util\Logger.cs" />
+    <Compile Include="Util\Shuffle.cs" />
+    <Compile Include="Leap\Gestures\Tap\Feedback\TapVisual.cs" />
+    <Compile Include="Leap\Gestures\Tap\Feedback\TapTactile.cs" />
+    <Compile Include="Leap\Gestures\Tap\TapDetector.cs" />
+    <Compile Include="Leap\Gestures\Tap\ITapObserver.cs" />
+    <Compile Include="Interfaces\INetworkObserver.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Leap.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="LeapCSharp.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <Folder Include="Lib\" />
+    <Folder Include="Menu\Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LeapCSharp.NET4.0.dll" />
+    <None Include="libLeap.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="libLeapCSharp.dylib">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Menu\Contacts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Menu\GPS.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Menu\Music.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Menu\StartMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+</Project>
