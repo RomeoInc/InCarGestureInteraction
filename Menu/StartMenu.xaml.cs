@@ -25,5 +25,10 @@ namespace LeapPointer_PC.Menu
         {
             InitializeComponent();
         }
+
+        public void CountComplete(Vector pos, ROI.ROI roi, DateTime time, int count)
+        {
+
+        }
     }
 }
