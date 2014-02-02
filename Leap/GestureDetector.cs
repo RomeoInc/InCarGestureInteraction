@@ -99,7 +99,7 @@ namespace Leap
 
             return null;
         }
-        #endregion
+        #endregion */
 
         #region Leap
         /// <summary>

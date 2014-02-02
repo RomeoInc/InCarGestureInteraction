@@ -3,12 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
-using Interfaces;
-
 
 namespace Leap.Gestures.Count
 {
-    class CountDetector : GestureDetector, INetworkObserver
+    public enum AcceptedGestures
+    {
+        GoBack,
+        SwipeLeft,
+        AnswerCall,
+        SwipeRight,
+        DriverClosed,
+        PassengerClosed,
+        BothClosed,
+        SwipeUp,
+        DriverOpen,
+        PassengerOpen,
+        BothOpen,
+        SwipeDown,
+        SwipeIn,
+        SwipeOut,
+        RotateClockwise,
+        RotateAntiCLockwise,
+        SelectOption,
+        InvalidGesture
+    }; 
+
+    class CountDetector : GestureDetector
     {
         #region Constants
         /// <summary>
@@ -103,26 +123,7 @@ namespace Leap.Gestures.Count
         public enum CountSelectionState { Idle, InProgress, Complete };
         private CountSelectionState selectionState;
 
-        public enum AcceptedGestures
-        {
-            GoBack,
-            SwipeLeft,
-            AnswerCall,
-            SwipeRight,
-            DriverClosed,
-            PassengerClosed,
-            BothClosed,
-            SwipeUp,
-            DriverOpen,
-            PassengerOpen,
-            BothOpen,
-            SwipeDown,
-            SwipeIn,
-            SwipeOut,
-            RotateClockwise,
-            RotateAntiCLockwise,
-            SelectOption
-        }; 
+       
         private AcceptedGestures gestureType;
 
         private List<ICountObserver> observers;
@@ -132,7 +133,7 @@ namespace Leap.Gestures.Count
         private int countTotal;
         private int activeHandId;
         private int discardedFrames;
-        private int activeGroup;
+       // private int activeGroup;
 
         public CountDetector(LeapInterface leap, GestureSpace space)
         {
@@ -142,8 +143,8 @@ namespace Leap.Gestures.Count
             activeHandId = -1;
             discardedFrames = 0;
 
-            // Initialise groups and ROIs
-            activeGroup = 0;
+           /* // Initialise groups and ROIs
+            activeGroup = 0; */
 
             // Initialise list of observers
             observers = new List<ICountObserver>();
@@ -212,27 +213,29 @@ namespace Leap.Gestures.Count
             }
 
             // Check for swipe gestures
-            if (SwipeLeft(frame) != INVALID_GESTURE && !base.activeSet.Equals("Main"))
+            if (SwipeLeft(frame) != AcceptedGestures.InvalidGesture)
             {
+
                 foreach (IGestureObserver observer in observers)
                 {
-                    observer.gestureComplete(SwipeLeft(frame));
+                    observer.GestureComplete(SwipeLeft(frame));
                 }
             }
 
-            if (SwipeRight(frame) != INVALID_GESTURE && !base.activeSet.Equals("Main"))
+            if (SwipeRight(frame) != AcceptedGestures.InvalidGesture)
             {
                 foreach (IGestureObserver observer in observers)
                 {
-                    observer.gestureComplete(SwipeRight(frame));
+                    observer.GestureComplete(SwipeRight(frame));
+                    
                 }
             }
 
-            if (SwipeUp(frame) != INVALID_GESTURE && !base.activeSet.Equals("Main"))
+            if (SwipeUp(frame) != AcceptedGestures.InvalidGesture)
             {
                 foreach (IGestureObserver observer in observers)
                 {
-                    observer.gestureComplete(SwipeUp(frame));
+                    observer.GestureComplete(SwipeUp(frame));
                 }
             }
 
@@ -317,11 +320,11 @@ namespace Leap.Gestures.Count
             }
             #endregion
 
-            #region Groups
+           /* #region Groups
             // If a group switch has taken place, abort selection
             if (ProcessGroups(activeHand))
                 return;
-            #endregion
+            #endregion */
 
             List<Finger> fingers = ExtendedFingers(activeHand.Fingers, false);
 
@@ -369,11 +372,11 @@ namespace Leap.Gestures.Count
                 PoseEnd();
             #endregion
 
-            #region Groups
+           /* #region Groups
             // If a group switch has taken place, abort selection
             if (ProcessGroups(activeHand))
                 return;
-            #endregion
+            #endregion */
 
             discardedFrames++;
 
@@ -427,10 +430,10 @@ namespace Leap.Gestures.Count
             }
             else
             {
-                #region Groups
+                /* #region Groups
                 if (ProcessGroups(activeHand))
                     return;
-                #endregion
+                #endregion */
 
                 switch (selectionState)
                 {
@@ -508,7 +511,7 @@ namespace Leap.Gestures.Count
         /// </summary>
         /// 
         /// <returns><c>true</c>, if a swipe left gesture was detected, <c>false</c> otherwise.</returns>
-        private int SwipeLeft(Frame frame) {
+        private AcceptedGestures SwipeLeft(Frame frame) {
             GestureList gestures = frame.Gestures();
 
             List<Hand> hands = DetectedHands(frame.Hands);
@@ -521,22 +524,22 @@ namespace Leap.Gestures.Count
 
                         if (swipe.Speed >= SWIPE_SPEED && fingers.Count == 2 && swipe.Direction.x <= SWIPE_LEFT_DIRECTION) {
                             Log("Gesture: Back Gesture");
-                            int gestureType = (int)AcceptedGestures.GoBack;
+                            gestureType = AcceptedGestures.GoBack;
                             return gestureType;
                         }
                         else if (swipe.Speed >= SWIPE_SPEED && swipe.Direction.x <= SWIPE_LEFT_DIRECTION)
                         {
                             Log("Gesture: Swipe left");
-                            int gestureType = (int)AcceptedGestures.SwipeLeft;
+                            gestureType = AcceptedGestures.SwipeLeft;
                             return gestureType;
                         }
                     }
                 }
             }
-            return INVALID_GESTURE;
+            return AcceptedGestures.InvalidGesture;
         }
 
-        private int SwipeRight(Frame frame) {
+        private AcceptedGestures SwipeRight(Frame frame) {
             GestureList gestures = frame.Gestures();
 
             List<Hand> hands = DetectedHands(frame.Hands);
@@ -548,21 +551,21 @@ namespace Leap.Gestures.Count
                         SwipeGesture swipe = new SwipeGesture(gesture);
                         if (swipe.Speed >= SWIPE_SPEED && fingers.Count == 2 && swipe.Direction.x >= SWIPE_RIGHT_DIRECTION) {
                             Log("Gesture: Answer/Finish Call");
-                            int gestureType = (int)AcceptedGestures.AnswerCall;
+                            gestureType = AcceptedGestures.AnswerCall;
                             return gestureType;
                         }
                         else if (swipe.Speed >= SWIPE_SPEED && swipe.Direction.x >= SWIPE_RIGHT_DIRECTION) {
                             Log("Gesture: Swipe Right");
-                            int gestureType = (int)AcceptedGestures.SwipeRight;
+                            gestureType = AcceptedGestures.SwipeRight;
                             return gestureType;
                         }
                     }
                 }
             }
-            return INVALID_GESTURE;
+            return AcceptedGestures.InvalidGesture;
         }
 
-        private int SwipeUp(Frame frame)
+        private AcceptedGestures SwipeUp(Frame frame)
         {
             GestureList gestures = frame.Gestures();
 
@@ -580,7 +583,7 @@ namespace Leap.Gestures.Count
                         if (swipe.Speed >= POWER_SWIPE && fingers.Count == 2 && swipe.Direction.y >= SWIPE_UP_DIRECTION)
                         {
                             Log("Gesture: Open Both Windows");
-                            int gestureType = (int)AcceptedGestures.BothOpen;
+                            gestureType = AcceptedGestures.BothOpen;
                             return gestureType; 
                         }
                         
@@ -589,13 +592,13 @@ namespace Leap.Gestures.Count
                             if (swipe.Position.x >= 0)
                             {
                                 Log("Gesture: Open Driver Window");
-                                int gestureType = (int)AcceptedGestures.DriverOpen;
+                                 gestureType = AcceptedGestures.DriverOpen;
                                 return gestureType;
                             }
                             else if (swipe.Position.x < 0)
                             {
                                 Log("Gesture: Open Passenger Window");
-                                int gestureType = (int)AcceptedGestures.PassengerOpen;
+                                gestureType = AcceptedGestures.PassengerOpen;
                                 return gestureType;
                             }
                           
@@ -604,16 +607,16 @@ namespace Leap.Gestures.Count
                         else if (swipe.Speed >= SWIPE_SPEED && swipe.Direction.y >= SWIPE_UP_DIRECTION)
                         {
                             Log("Gesture: Swipe Up");
-                            int gestureType = (int)AcceptedGestures.SwipeUp;
+                            gestureType = AcceptedGestures.SwipeUp;
                             return gestureType;
                         }
                     }
                 }
             }
-            return INVALID_GESTURE;
+            return AcceptedGestures.InvalidGesture;
         }
 
-        private int SwipeDown(Frame frame)
+        private AcceptedGestures SwipeDown(Frame frame)
         {
             GestureList gestures = frame.Gestures();
 
@@ -631,7 +634,7 @@ namespace Leap.Gestures.Count
                         if (swipe.Speed >= POWER_SWIPE && fingers.Count == 2 && swipe.Direction.y <= SWIPE_DOWN_DIRECTION)
                         {
                             Log("Gesture: Close Both Windows");
-                            int gestureType = (int)AcceptedGestures.BothClosed;
+                            gestureType = AcceptedGestures.BothClosed;
                             return gestureType;
                         }
 
@@ -640,13 +643,13 @@ namespace Leap.Gestures.Count
                             if (swipe.Position.x >= 0)
                             {
                                 Log("Gesture: Open Driver Window");
-                                int gestureType = (int)AcceptedGestures.DriverClosed;
+                                gestureType = AcceptedGestures.DriverClosed;
                                 return gestureType;
                             }
                             else if (swipe.Position.x < 0)
                             {
                                 Log("Gesture: Open Passenger Window");
-                                int gestureType = (int)AcceptedGestures.PassengerClosed;
+                                gestureType = AcceptedGestures.PassengerClosed;
                                 return gestureType;
                             }
 
@@ -655,16 +658,16 @@ namespace Leap.Gestures.Count
                         else if (swipe.Speed >= SWIPE_SPEED && swipe.Direction.y <= SWIPE_DOWN_DIRECTION)
                         {
                             Log("Gesture: Swipe Down");
-                            int gestureType = (int)AcceptedGestures.SwipeDown;
+                            gestureType = AcceptedGestures.SwipeDown;
                             return gestureType;
                         }
                     }
                 }
             }
-            return INVALID_GESTURE;
+            return AcceptedGestures.InvalidGesture;
         }
 
-        private int ZoomOut(Frame frame)
+        private AcceptedGestures ZoomOut(Frame frame)
         {
             GestureList gestures = frame.Gestures();
 
@@ -678,16 +681,16 @@ namespace Leap.Gestures.Count
                         if (swipe.Speed >= SWIPE_SPEED && swipe.Direction.z >= ZOOM_OUT_DIRECTION)
                         {
                             Log("Gesture: Zoom Out");
-                            int gestureType = (int)AcceptedGestures.SwipeOut;
+                            gestureType = AcceptedGestures.SwipeOut;
                             return gestureType;
                         }
                     }
                 }
             }
-            return INVALID_GESTURE;
+            return AcceptedGestures.InvalidGesture;
         }
 
-        private int Rotate(Frame frame) {
+        private AcceptedGestures Rotate(Frame frame) {
             GestureList gestures = frame.Gestures();
 
             if (gestures.Count > 0) {
@@ -696,22 +699,22 @@ namespace Leap.Gestures.Count
                         CircleGesture circle = new CircleGesture(gesture);
                         if (circle.Pointable.Direction.AngleTo(circle.Normal) <= Math.PI / 4) {
                             Log("Gesture: Clockwise Rotation");
-                            int gestureType = (int)AcceptedGestures.RotateClockwise;
+                            gestureType = AcceptedGestures.RotateClockwise;
                             return gestureType;
                         }
                         else
                         {
                             Log("Gesture: Anti-Clockwise Rotation");
-                            int gestureType = (int)AcceptedGestures.SwipeOut;
+                            gestureType = AcceptedGestures.SwipeOut;
                             return gestureType;
                         }
                     }
                 }
             }
-            return INVALID_GESTURE;
+            return AcceptedGestures.InvalidGesture;
         }
 
-       private int SelectOption(Frame frame) {
+       private AcceptedGestures SelectOption(Frame frame) {
             GestureList gestures = frame.Gestures();
 
             if (gestures.Count > 0) {
@@ -720,12 +723,12 @@ namespace Leap.Gestures.Count
                     if (gesture.Type == Gesture.GestureType.TYPESCREENTAP && gesture.State == Gesture.GestureState.STATESTOP){
                         ScreenTapGesture screenTap = new ScreenTapGesture(gesture);
                         Log("Gesture: Screen Tap");
-                        int gestureType = (int)AcceptedGestures.SwipeOut;
+                        gestureType = AcceptedGestures.SwipeOut;
                         return gestureType;
                     }
                 }
             }
-            return INVALID_GESTURE;
+            return AcceptedGestures.InvalidGesture;
         }
 
         /// <summary>
@@ -733,7 +736,7 @@ namespace Leap.Gestures.Count
         /// position of the given hand. Returns true
         /// if a group switch has taken place.
         /// </summary>
-        private bool ProcessGroups(Hand hand)
+       /* private bool ProcessGroups(Hand hand)
         {
             int midZ = base.workspace.MidZ();
             float palmZ = hand.PalmPosition.z;
@@ -753,7 +756,7 @@ namespace Leap.Gestures.Count
             }
 
             return false;
-        }
+        }*/
 
         private void ShowEdges(GestureSpace space, int group, Hand hand, List<Finger> fingers)
         {
@@ -790,7 +793,7 @@ namespace Leap.Gestures.Count
         {
             state = CountState.Tracking;
             selectionState = CountSelectionState.Idle;
-            activeGroup = 0;
+            //activeGroup = 0;
             activeHandId = handId;
 
             foreach (ICountObserver observer in observers)
@@ -804,11 +807,11 @@ namespace Leap.Gestures.Count
             if (selectionState != CountSelectionState.Idle)
                 CountStop();
 
-            GroupLeave(activeGroup);
+            //GroupLeave(activeGroup);
 
             state = CountState.Idle;
             selectionState = CountSelectionState.Idle;
-            activeGroup = 0;
+            //activeGroup = 0;
             discardedFrames = 0;
             activeHandId = -1;
 
@@ -831,11 +834,11 @@ namespace Leap.Gestures.Count
             if (selectionState != CountSelectionState.Idle)
                 CountStop();
 
-            GroupLeave(activeGroup);
+            //GroupLeave(activeGroup);
 
             state = CountState.Tracking;
             selectionState = CountSelectionState.Idle;
-            activeGroup = 0;
+            //activeGroup = 0;
             discardedFrames = 0;
 
             Log("Count: PoseEnd");
@@ -898,12 +901,12 @@ namespace Leap.Gestures.Count
                 observer.CountProgress(time, roi);
         }
 
-        private void GroupLeave(int group)
+        /*private void GroupLeave(int group)
         {
             if (group == 0)
                 return;
 
-            //if (selectionState != CountSelectionState.Idle)
+            if (selectionState != CountSelectionState.Idle)
                 CountStop();
 
             activeGroup = 0;
@@ -925,7 +928,7 @@ namespace Leap.Gestures.Count
                 observer.GroupEnter(group.ToString());
 
             Log(String.Format("Count: GroupEnter {0}", group));
-        }
+        }*/
         #endregion
 
         #region ICountObservers
@@ -946,18 +949,19 @@ namespace Leap.Gestures.Count
             if (activeSet == null)
                 return null;
 
-            if (activeSet.HasGroups)
+            /*if (activeSet.HasGroups)
             {
                 foreach (ROI.ROI r in activeSet.Regions)
                     if (r.Group == activeGroup && r.Number == count)
                         return r;
             }
             else
-            {
-                foreach (ROI.ROI r in activeSet.Regions)
-                    if (r.Number == count)
-                        return r;
-            }
+            {*/
+            foreach (ROI.ROI r in activeSet.Regions)
+                if (r.Number == count){
+                    return r;
+                }
+            //}
 
                 return null;
         }

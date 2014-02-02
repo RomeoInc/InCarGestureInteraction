@@ -26,9 +26,23 @@ namespace LeapPointer_PC.Menu
             InitializeComponent();
         }
 
-        public void CountComplete(Vector pos, ROI.ROI roi, DateTime time, int count)
-        {
+        public void EnterWorkspace(int hands, int fingers) { }
+        public void LeaveWorkspace(int dummyToAllowOverriding) { }
 
-        }
+        // Count selection updates
+        public void CountStart(Leap.Vector pos, ROI roi, int count) { }
+        public void CountStop() { }
+        public void CountComplete(Leap.Vector pos, ROI roi, DateTime time, int count) { }
+        public void CountProgress(long dwellTime, ROI roi) { }
+
+        // Cursor position update
+        public void CursorUpdate(Leap.Vector pos, int count, int edge) { }
+
+        // Tile group updates
+        public void GroupEnter(String name) { }
+        public void GroupLeave(String name) { }
+
+        public void Back() { }
+
     }
 }

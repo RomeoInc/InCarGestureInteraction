@@ -1,4 +1,5 @@
 ﻿using Leap.Gestures.Count;
+using Leap.ROI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace LeapPointer_PC.Menu
         public Music(Window window, int count)
         {
             InitializeComponent();
-            Back();
+            GoBack();
             NextSong();
             PreviousSong();
             TurnUp();
@@ -32,24 +33,24 @@ namespace LeapPointer_PC.Menu
             Interact();
         }
 
-        private void gestureComplete(CountDetector.AcceptedGestures type){
+        public void GestureComplete(AcceptedGestures type){
             switch(type){
-                case CountDetector.AcceptedGestures.GoBack:
-                    Back();
+                case AcceptedGestures.GoBack:
+                    GoBack();
                     break;
-                case CountDetector.AcceptedGestures.SwipeLeft:
+                case AcceptedGestures.SwipeLeft:
                     NextSong();
                     break;
-                case CountDetector.AcceptedGestures.SwipeRight:
+                case AcceptedGestures.SwipeRight:
                     PreviousSong();
                     break;
-                case CountDetector.AcceptedGestures.RotateClockwise:
+                case AcceptedGestures.RotateClockwise:
                     TurnUp();
                     break;
-                case CountDetector.AcceptedGestures.RotateAntiCLockwise:
+                case AcceptedGestures.RotateAntiCLockwise:
                     TurnDown();
                     break;
-                case CountDetector.AcceptedGestures.SelectOption:
+                case AcceptedGestures.SelectOption:
                     Interact();
                     break;
                 default:
@@ -57,10 +58,11 @@ namespace LeapPointer_PC.Menu
                 }
         }
 
-        private void Back()
+        private void GoBack()
         {
             throw new NotImplementedException();
         }
+
         
         private void NextSong()
         {

@@ -2,15 +2,8 @@
 using System.Collections.Generic;
 using System.Threading;
 using Leap;
-using Experiment;
-using Interfaces;
-using Leap.Gestures.Pointing;
-using Leap.Gestures.Pointing.Feedback;
 using Leap.ROI;
-using FeedbackType = Experiment.Metadata.FeedbackType;
-using GestureType = Experiment.Metadata.GestureType;
 using Leap.Gestures.Count;
-using Leap.Gestures.Count.Feedback;
 using LeapPointer_PC.Menu;
 
 

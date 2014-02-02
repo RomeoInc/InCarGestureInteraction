@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Leap.Gestures.Count
 {
-    interface IGestureObserver : ICountObserver
+    public interface IGestureObserver
     {
-        public void gestureComplete(int type);
+        void GestureComplete(AcceptedGestures type);
     }
 }

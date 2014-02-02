@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Leap.Gestures.Count
 {
-    interface ICountObserver
+    public interface ICountObserver
     {
         // Workspace updates
         void EnterWorkspace(int hands, int fingers);

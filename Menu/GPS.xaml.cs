@@ -33,32 +33,32 @@ namespace LeapPointer_PC.Menu
             PlaceMarker();
         }
 
-        private void gestureComplete(CountDetector.AcceptedGestures type)
+        public void GestureComplete(AcceptedGestures type)
         {
             switch (type)
             {
-                case CountDetector.AcceptedGestures.GoBack:
+                case AcceptedGestures.GoBack:
                     Back();
                     break;
-                case CountDetector.AcceptedGestures.SwipeLeft:
+                case AcceptedGestures.SwipeLeft:
                     ScrollLeft();
                     break;
-                case CountDetector.AcceptedGestures.SwipeRight:
+                case AcceptedGestures.SwipeRight:
                     ScrollRight();
                     break;
-                case CountDetector.AcceptedGestures.SwipeUp:
+                case AcceptedGestures.SwipeUp:
                     ScrollUp();
                     break;
-                case CountDetector.AcceptedGestures.SwipeDown:
+                case AcceptedGestures.SwipeDown:
                     ScrollDown();
                     break;
-                case CountDetector.AcceptedGestures.SwipeIn:
+                case AcceptedGestures.SwipeIn:
                     ZoomIn();
                     break;
-                case CountDetector.AcceptedGestures.SwipeOut:
+                case AcceptedGestures.SwipeOut:
                     ZoomOut();
                     break;
-                case CountDetector.AcceptedGestures.SelectOption:
+                case AcceptedGestures.SelectOption:
                     PlaceMarker();
                     break;
                 default:

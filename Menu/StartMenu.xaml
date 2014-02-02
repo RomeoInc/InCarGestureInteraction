@@ -25,7 +25,7 @@
         <Grid Grid.Row="0" Grid.Column="1" Background="PowderBlue">
             <Border BorderBrush="Gray" BorderThickness="5"/>
             <TextBlock Text="GPS" TextWrapping="Wrap" TextAlignment="Center" FontSize="50" FontWeight="ExtraBold" FontFamily="CenturyGothic" Height="50" Width="200" Margin="151,377,139,63" RenderTransformOrigin="-0.278,0.26"/>
-            <Image HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="250" Margin="132,108,0,0" Source="Images/GPS.png" MouseDown="Image_MouseDown" />
+            <Image HorizontalAlignment="Left" Height="300" VerticalAlignment="Top" Width="250" Margin="132,108,0,0" Source="Images/GPS.png" />
             <TextBlock Text=" Option 2   " TextWrapping="Wrap" HorizontalAlignment="Center" TextAlignment="Center" FontFamily="CenturyGothic" FontSize="40" FontWeight="Bold"  Margin="162,440,118,10"/>
         </Grid>
 

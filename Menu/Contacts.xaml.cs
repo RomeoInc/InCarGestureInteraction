@@ -60,5 +60,10 @@ namespace LeapPointer_PC.Menu
         {
             throw new NotImplementedException();
         }
+
+        public void GestureComplete(AcceptedGestures type)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
