@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Leap.Gestures.Count;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,47 @@ namespace LeapPointer_PC.Menu
     /// <summary>
     /// Interaction logic for Contacts.xaml
     /// </summary>
-    public partial class Contacts : UserControl
+    public partial class Contacts : UserControl, IGestureObserver
     {
         public Contacts()
         {
             InitializeComponent();
+            Back();
+            NextPerson();
+            PreviousPerson();
+            Call();
+            HangUp();
+            Reject();
+        }
+
+        private void Back()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void NextPerson()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void PreviousPerson()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Call()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void HangUp()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Reject()
+        {
+            throw new NotImplementedException();
         }
     }
 }

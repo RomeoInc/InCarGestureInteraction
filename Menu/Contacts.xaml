@@ -32,40 +32,35 @@
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
 
-                <Grid x:Name="Andy"  Grid.Row="0">
-                    <Image x:Name="AndyPic"  Source="Images/Contacts/Andy.jpg " VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Andy" VerticalAlignment="Center" FontFamily="CenturyGothic" FontSize="35" FontWeight="Bold"/>
+                <Grid x:Name="Arisa"  Grid.Row="0">
+                    <Image Source="Images/Contacts/Arisa.jpg " VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Arisa" VerticalAlignment="Center" FontFamily="CenturyGothic" FontSize="35" FontWeight="SemiBold"/>
                 </Grid>
-                <Grid x:Name="Arisa"  Grid.Row="1">
-                    <Image Source="Images/Phone.png " VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Arisa" VerticalAlignment="Center" FontFamily="CenturyGothic" FontSize="35" FontWeight="Bold"/>
+                <Grid x:Name="Barry"  Grid.Row="1">
+                    <Image Source="Images/Contacts/Barry.jpg " VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Barry" VerticalAlignment="Center" FontFamily="CenturyGothic" FontSize="35" FontWeight="SemiBold"/>
                 </Grid>
-                <Grid x:Name="Barry"  Grid.Row="2">
-                    <Image Source="Images/Phone.png " VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Barry" VerticalAlignment="Center" FontFamily="CenturyGothic" FontSize="35" FontWeight="Bold"/>
+                <Grid x:Name="Gary"  Grid.Row="2">
+                    <Image Source="Images/Contacts/Gary.jpg " VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Gary" VerticalAlignment="Center" FontFamily="CenturyGothic" FontSize="35" FontWeight="SemiBold"/>
                 </Grid>
-                <Grid x:Name="Chris"  Grid.Row="3">
-                    <Image Source="Images/Phone.png " VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Chris" VerticalAlignment="Center" FontFamily="CenturyGothic" FontSize="35" FontWeight="Bold"/>
+                <Grid x:Name="Gerard"  Grid.Row="3">
+                    <Image Source="Images/Contacts/Gerard.jpg " VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Gerard" VerticalAlignment="Center" FontFamily="CenturyGothic" FontSize="35" FontWeight="SemiBold"/>
                 </Grid>
-                <Grid x:Name="Gary"  Grid.Row="4">
-                    <Image Source="Images/Phone.png " VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Gary" VerticalAlignment="Center" FontFamily="CenturyGothic" FontSize="35" FontWeight="Bold"/>
+                <Grid x:Name="Mark"  Grid.Row="4">
+                    <Image Source="Images/Contacts/Mark.jpg " VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Mark" VerticalAlignment="Center" FontFamily="CenturyGothic" FontSize="35" FontWeight="SemiBold"/>
                 </Grid>
-                <Grid x:Name="Gerard"  Grid.Row="5">
-                    <Image Source="Images/Phone.png " VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Gerard" VerticalAlignment="Center" FontFamily="CenturyGothic" FontSize="35" FontWeight="Bold"/>
+                <Grid x:Name="Mehrab"  Grid.Row="5">
+                    <Image Source="Images/Contacts/Mehrab.jpg " VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Mehrab" VerticalAlignment="Center" FontFamily="CenturyGothic" FontSize="35" FontWeight="SemiBold"/>
                 </Grid>
-                <Grid x:Name="Mark"  Grid.Row="6">
-                    <Image Source="Images/Phone.png " VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Mark" VerticalAlignment="Center" FontFamily="CenturyGothic" FontSize="35" FontWeight="Bold"/>
-                </Grid>
-                <Grid x:Name="Mehrab"  Grid.Row="7">
-                    <Image Source="Images/Phone.png " VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Mehrab" VerticalAlignment="Center" FontFamily="CenturyGothic" FontSize="35" FontWeight="Bold"/>
+                <Grid x:Name="Stuart"  Grid.Row="6">
+                    <Image Source="Images/Contacts/Stuart.jpg " VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Stuart" VerticalAlignment="Center" FontFamily="CenturyGothic" FontSize="35" FontWeight="SemiBold"/>
                 </Grid>
             </Grid>
         </Grid>

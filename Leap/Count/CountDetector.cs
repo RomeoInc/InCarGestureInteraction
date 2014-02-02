@@ -882,7 +882,7 @@ namespace Leap.Gestures.Count
             foreach (ICountObserver observer in observers)
                 observer.CountComplete(null, roi, time, count);
 
-            // Triger a ROI set activation
+            // Trigger a ROI set activation
             if (roi.ToActivate != null && roi.ToActivate.Length > 0)
             {
                 ActivateROISet(roi.ToActivate);
